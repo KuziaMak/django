@@ -1,0 +1,32 @@
+[
+  {
+
+      "name": "Иame",
+      "numbers": "1234567",
+      "email": "sfsfsf@yandex.ru",
+      "address": "Hell",
+      "created": "2021-10-10T13:41:52.089Z",
+      "updated": "2021-10-10T13:41:52.089Z"
+
+  },
+  {
+
+      "name": "Name",
+      "numbers": "7654321",
+      "email": "AAAAAAAAAAAA@mail.ru",
+      "address": "Rai",
+      "created": "2021-10-10T13:42:30.579Z",
+      "updated": "2021-10-10T13:42:30.579Z"
+
+  },
+  {
+
+      "name": "some",
+      "numbers": "76541234",
+      "email": "sgdafs@gmail.com",
+      "address": "fsfsfsfhadfcbpk[jtrlok;jfklo;dgfa",
+      "created": "2021-10-10T13:43:34.369Z",
+      "updated": "2021-10-10T13:43:34.369Z"
+
+  }
+]

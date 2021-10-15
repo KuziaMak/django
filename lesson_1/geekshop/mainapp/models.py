@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class ProductCategory(models.Model):
     name = models.CharField(
         max_length=64,
@@ -18,8 +19,10 @@ class ProductCategory(models.Model):
     updated = models.DateTimeField(
         auto_now=True
     )
+
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     category = models.ForeignKey(
@@ -62,22 +65,23 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.name} {self.category.name}"
 
+
 class Menu(models.Model):
-        name = models.CharField(
-            max_length=64,
-            verbose_name="имя",
-            unique=True,
-        )
-        created = models.DateTimeField(
-            auto_now_add=True,
-        )
+    name = models.CharField(
+        max_length=64,
+        verbose_name="имя",
+        unique=True,
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+    )
 
-        updated = models.DateTimeField(
-            auto_now=True
-        )
+    updated = models.DateTimeField(
+        auto_now=True
+    )
 
-        def __str__(self):
-            return self.name
+    def __str__(self):
+        return self.name
 
 
 class Telefon(models.Model):

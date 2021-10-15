@@ -1,4 +1,4 @@
-from  django.shortcuts import render
+from django.shortcuts import render
 
 from mainapp.models import Product, Telefon
 
@@ -9,9 +9,9 @@ def main(request):
     products = Product.objects.all()[:5]
     context = {
         'title': title,
-        "products":products
+        "products": products
     }
-    return render(request,"geekshop/index.html",context=context)
+    return render(request, "geekshop/index.html", context=context)
 
 
 def contacts(request):
@@ -20,6 +20,6 @@ def contacts(request):
     telefon = Telefon.objects.all()[:5]
     context = {
         'title': title,
-        'telefon':telefon
+        'telefon': telefon
     }
-    return render(request, 'geekshop/contact.html',context=context)
+    return render(request, 'geekshop/contact.html', context=context)

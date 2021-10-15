@@ -1,0 +1,22 @@
+[
+  {
+      "category": "Стулья",
+      "name": "Стул",
+      "image": "products_images/product-2.jpg",
+      "shortdesc": "Лучше не найти",
+      "description": "и хуже тоже",
+      "price": "4543.00",
+      "quantity": 20
+
+  },
+  {
+
+      "category": "Лампы",
+      "name": "Лампа",
+      "image": "products_images/product-1.jpg",
+      "shortdesc": "Светит",
+      "description": "",
+      "price": "666.00",
+      "quantity": 36
+  }
+  ]
