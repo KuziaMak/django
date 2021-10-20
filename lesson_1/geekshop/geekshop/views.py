@@ -6,7 +6,9 @@ from mainapp.models import Product, Telefon
 
 def main(request):
     title = "Магазин"
-    basket = Basket.objects.filter(user=request.user)
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
 
 
     products = Product.objects.all()[:5]
@@ -20,8 +22,9 @@ def main(request):
 
 def contacts(request):
     title = "Контакты"
-    basket = Basket.objects.filter(user=request.user)
-
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
 
     telefon = Telefon.objects.all()[:5]
     context = {

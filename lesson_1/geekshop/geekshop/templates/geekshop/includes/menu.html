@@ -7,8 +7,15 @@
     active {% endif %}">контакты</a></li>
     {% if user.is_authenticated %}
     <li><a href="{% url 'basket:view' %}" class="{% if request.resolver_match.view_name == 'basket:view' %}
-    active {% endif %}">Корзина</a> {{ basket|length }} шт. </li>
-    {% endif %}
+    active {% endif %}">Корзина</a>
+            {% if basket.0 %}
+                <span>
+                    {{ basket.0.total_cost|floatformat:0 }} руб.
+                    {{ basket.0.total_quantity }} шт.
+                </span>
+            {% endif %}
+            </li>
+        {% endif %}
     {% if user.is_authenticated %}
         <li>
             <a href="{% url 'auth:edit' %}">
