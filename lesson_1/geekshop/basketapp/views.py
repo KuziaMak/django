@@ -11,7 +11,8 @@ from mainapp.models import Product
 def basket(request):
     basket = Basket.objects.filter(user=request.user)
     context = {
-        'basket':basket
+        'title':'basket',
+        'basket':basket,
     }
     return render(request, 'basketapp/basket.html', context)
 
