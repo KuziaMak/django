@@ -128,6 +128,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"geekshop", "static"),
+    # os.path.join(BASE_DIR,"adminapp", "static"),
+    # os.path.join(BASE_DIR,"basketapp", "static"),
+    # os.path.join(BASE_DIR,"authapp", "static"),
 )
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',

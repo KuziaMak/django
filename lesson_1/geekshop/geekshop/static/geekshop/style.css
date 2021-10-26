@@ -1136,3 +1136,6 @@ td:first-child {
     display: block;
 }
 
+.dropdown-toggle.show + .dropdown-menu.show{
+    display: flex;flex-direction: column;align-items: baseline;
+}
