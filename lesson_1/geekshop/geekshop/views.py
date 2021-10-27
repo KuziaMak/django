@@ -11,7 +11,7 @@ def main(request):
         basket = Basket.objects.filter(user=request.user)
 
 
-    products = Product.objects.all()[:5]
+    products = Product.objects.all()[:3]
     context = {
         'title': title,
         "products": products,
