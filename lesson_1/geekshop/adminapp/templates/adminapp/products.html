@@ -1,0 +1,68 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Продукты</h1>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Продукты
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Наменование</th>
+                                <th>Детали</th>
+                                <th>Редактирования</th>
+                                <th>Активность</th>
+                                <th>Удалить</th>
+
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Наменование</th>
+                                <th>Детали</th>
+                                <th>Редактирования</th>
+                                <th>Активность</th>
+                                <th>Удалить</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for product in objects %}
+                                <tr {% if not product.is_active %} style="opacity: 0.5;" {% endif %}>
+                                    <td>{{ product.name }}</td>
+                                    <td><a href="{% url 'admin_staff:product_read' product.pk%}"> Details</a></td>
+                                    <td><a href="{% url 'admin_staff:product_update' product.pk%}"> Update</a></td>
+                                    <td class="text-center">
+                                        {% if product.is_active %}
+                                            <i class="fa fa-check-circle"></i>
+                                        {% else %}
+                                            <i class="fa fa-times-circle"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a {% if not product.is_active %} class="invisible" {% endif %} href="{% url 'admin_staff:product_delete' pk=product.pk %}">
+                                            <i class="fa fa-times-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+
+                    <a href="{% url 'admin_staff:product_create' category.pk %}" >
+                        <button class="btn btn-success">Создать Продукт</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
