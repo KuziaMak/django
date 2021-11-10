@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     "mainapp",
     "authapp",
+    "basketapp",
+    "adminapp",
 ]
 
 AUTH_USER_MODEL = 'authapp.ShopUser'
@@ -126,6 +128,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,"geekshop", "static"),
+    # os.path.join(BASE_DIR,"adminapp", "static"),
+    # os.path.join(BASE_DIR,"basketapp", "static"),
+    # os.path.join(BASE_DIR,"authapp", "static"),
 )
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -139,3 +144,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+LOGIN_URL = '/auth/login/'

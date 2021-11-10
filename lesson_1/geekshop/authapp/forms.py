@@ -31,15 +31,20 @@ class ShopUserRegisterForm(UserCreationForm):
             raise forms.ValidationError("Вы слишком молоды!")
 
         return data
+
+
 class ShopUserEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
-        fields = ('username', 'first_name', 'last_name',   'email', 'age', 'avatar','password')
+        fields = (
+            'username', 'first_name', 'last_name', 'email', 'age', 'avatar', 'password', 'is_active', 'is_superuser')
 
     def __init__(self, *args, **kwargs):
-        super(ShopUserEditForm,self).__init__(*args, **kwargs)
+        super(ShopUserEditForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
+            if field_name == 'is_active' or field_name == 'is_superuser':
+                field.widget.attrs['class'] = ''
             field.help_text = ''
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
