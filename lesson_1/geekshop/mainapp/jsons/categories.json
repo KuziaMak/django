@@ -1,11 +1,42 @@
 [
   {
-      "name": "Стулья",
-      "description": ""
+    "name": "Стулья",
+    "description": ""
   },
   {
-      "name": "Лампы",
-      "description": ""
-
+    "name": "Лампы",
+    "description": ""
+  },
+  {
+    "name": "Дом",
+    "description": ""
+  },
+  {
+    "name": "Офис",
+    "description": ""
+  },
+  {
+    "name": "Модерн",
+    "description": ""
+  },
+  {
+    "name": "Классика",
+    "description": "Описание"
+  },
+  {
+    "name": "Стулья",
+    "description": ""
+  },
+  {
+    "name": "Лампы",
+    "description": ""
+  },
+  {
+    "name": "gfffff",
+    "description": ""
+  },
+  {
+    "name": "ssss",
+    "description": "443"
   }
 ]

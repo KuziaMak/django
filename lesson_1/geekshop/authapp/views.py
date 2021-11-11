@@ -1,12 +1,15 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, HttpResponseRedirect
-from  django.contrib import auth
+from django.contrib import auth
 from django.urls import reverse
 
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from authapp.models import ShopUser
+from geekshop import settings
 
 
 def login(request):
-    title ='вход'
+    title = 'вход'
 
     login_form = ShopUserLoginForm(data=request.POST or None)
     next = request.GET['next'] if 'next' in request.GET.keys() else ''
@@ -14,21 +17,22 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        user = auth.authenticate(username=username,password=password)
+        user = auth.authenticate(username=username, password=password)
         if user and user.is_active:
-            auth.login(request,user)
+            auth.login(request, user)
             if 'next' in request.POST.keys():
-                return  HttpResponseRedirect(request.POST['next'])
+                return HttpResponseRedirect(request.POST['next'])
             else:
-                return  HttpResponseRedirect(reverse('main'))
+                return HttpResponseRedirect(reverse('main'))
 
     contex = {
-        'title':title,
-        'login_form':login_form,
-        'next':next,
+        'title': title,
+        'login_form': login_form,
+        'next': next,
     }
 
-    return render(request,'authapp/login.html',contex)
+    return render(request, 'authapp/login.html', contex)
+
 
 def logout(request):
     auth.logout(request)
@@ -42,13 +46,18 @@ def register(request):
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
 
         if register_form.is_valid():
-            register_form.save()
-            return HttpResponseRedirect(reverse('auth:login'))
+            user = register_form.save()
+            if send_verify_mail(user):
+                print('Сообщение пользователю отправлино.')
+                return HttpResponseRedirect(reverse('auth:login'))
+            else:
+                print('Сообщение пользователю НЕ отправлино.')
+                return HttpResponseRedirect(reverse('auth:login'))
     else:
         register_form = ShopUserRegisterForm()
 
     context = {'title': title,
-               'register_form': register_form
+               'register_form': register_form,
                }
 
     return render(request, 'authapp/register.html', context)
@@ -70,3 +79,31 @@ def edit(request):
                }
 
     return render(request, 'authapp/edit.html', context)
+
+
+def verify(request, email, activation_key):
+    try:
+        user = ShopUser.objects.get(email=email)
+        if user.activation_key == activation_key and not user.is_activation_key_expires():
+            user.is_active = True
+            user.save()
+            auth.login(request, user)
+            return render(request, 'authapp/verify.html')
+        else:
+            print(f"err activation user: {user}")
+            return render(request,'authapp/verify.html')
+    except Exception as err:
+        print(f"error activation user: {err.args}")
+        return HttpResponseRedirect(reverse('main'))
+
+
+def send_verify_mail(user):
+    verify_link = reverse('auth:verify', args=[user.email, user.activation_key])
+
+    title = f'Подтвердите учетную запись {user.username}'
+
+    message = f'Для подверждения учетной записи {user.username}' \
+              f'на портале {settings.DOMAIN_NAME} перейдите по ссылки: \n' \
+              f'{settings.DOMAIN_NAME}{verify_link}'
+
+    return send_mail(title,message,settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
