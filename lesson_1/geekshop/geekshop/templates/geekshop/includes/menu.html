@@ -22,6 +22,9 @@
                 <li><a href="{% url 'admin_staff:users' %}"
                        class="dropdown-item {% if request.resolver_match.view_name == 'basket:view' %}
                 active {% endif %}">Admin</a></li>
+                <li><a href="{% url 'ordersapp:main' %}"
+                       class="dropdown-item {% if request.resolver_match.view_name == 'basket:view' %}
+                active {% endif %}">Заказы</a></li>
             {% endif %}
             {% if basket %}
                 <li><a href="{% url 'basket:view' %}"
