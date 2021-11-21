@@ -24,11 +24,11 @@ def products(request, pk=None,page=1):
     products = Product.objects.all().order_by('price')
     if pk is not None:
         if pk == 0 :
-            products = Product.objects.all().filter(is_active=True,category__is_active=True).order_by('price')
+            products = Product.objects.all().filter(is_active=True,category__is_active=True, quantity__gte=1).order_by('price')
             category = {'pk':0, 'name': 'Все'}
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.all().filter(category__pk=pk,is_active=True,category__is_active=True).order_by('price')
+            products = Product.objects.all().filter(category__pk=pk,is_active=True,category__is_active=True,quantity__gte=1).order_by('price')
 
         paginator = Paginator(products, 2)
         try:
@@ -60,7 +60,7 @@ def products(request, pk=None,page=1):
 
 def product(request,pk):
     title = 'Детали'
-    product = get_object_or_404(Product,pk=pk)
+    product = get_object_or_404(Product,pk=pk, quantity__gte=1)
     context = {
         'title':title,
         'links_menu': ProductCategory.objects.all(),
