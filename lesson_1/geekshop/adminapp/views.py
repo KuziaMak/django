@@ -62,7 +62,7 @@ class UsersCreateView(CreateView):
 
 class UsersUpdateView(UpdateView):
     model = ShopUser
-    form_class = ShopUserRegisterForm
+    form_class = ShopUserRegisterForm # CBV 
     template_name = 'adminapp/user_update.html'
     success_url = reverse_lazy('admin_staff:users')
 

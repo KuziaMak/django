@@ -8,7 +8,7 @@ from mainapp.models import ProductCategory, Product, Menu, Telefon
 JSON_PATH = 'mainapp/jsons'
 
 def load_from_json(file):
-    with open(os.path.join(JSON_PATH,file+'.json'),mode="r", encoding='utf8')as infile:
+    with open(os.path.join(JSON_PATH,file+'.json'), mode="r", encoding='utf8')as infile:
         return json.load(infile)
 
 
