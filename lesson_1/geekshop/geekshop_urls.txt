@@ -1,0 +1,14 @@
+http://89.108.77.222/
+http://89.108.77.222/products/
+http://89.108.77.222/contact/
+http://89.108.77.222/products/category/1/
+http://89.108.77.222/products/category/2/
+http://89.108.77.222/products/category/3/
+http://89.108.77.222/products/category/4/
+http://89.108.77.222/basket/
+http://89.108.77.222/order/
+http://89.108.77.222/auth/edit/
+http://89.108.77.222/order/update/2/
+http://89.108.77.222/order/update/3/
+http://89.108.77.222/order/update/4/
+http://89.108.77.222/order/update/5/
