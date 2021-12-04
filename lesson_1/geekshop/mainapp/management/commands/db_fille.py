@@ -31,7 +31,6 @@ class Command(BaseCommand):
             product['category'] = _category
             new_product = Product(**product)
             new_product.save()
-        ShopUser.objects.all().delete()
         super_user = ShopUser.objects.create_superuser('admin', 'admin@geekshop.local', '123', age=30)
         if super_user:
             print("Super user created.")
